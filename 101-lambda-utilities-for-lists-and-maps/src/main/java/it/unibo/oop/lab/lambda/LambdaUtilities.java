@@ -87,12 +87,12 @@ public final class LambdaUtilities {
          */
         final Map<R, Set<T>> m = new HashMap<>();
         list.forEach(x -> {
-            m.merge(op.apply(x), Set.of(x), (a, b) -> {
+            m.merge(op.apply(x), new HashSet<T>(Set.of(x)) /*Set.of(x)*/, (a, b) -> {a.addAll(b); return a;}); /*{
                 Set<T> ret = new HashSet<>();
                 ret.addAll(a);
                 ret.addAll(b);
                 return ret;
-            });
+            });*/
         });
         return m;
     }
